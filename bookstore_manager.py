@@ -91,7 +91,8 @@ def print_sale_report(conn: sqlite3.Connection) -> None:
     sales = cursor.fetchall()
 
     for idx, row in enumerate(sales, start=1):
-        print(f"\n==================== 銷售報表 ====================")
+        if idx == 1:
+            print(f"\n==================== 銷售報表 ====================")
         print(f"銷售 #{idx}")
         print(f"銷售編號: {row['sid']}")
         print(f"銷售日期: {row['sdate']}")
@@ -104,6 +105,7 @@ def print_sale_report(conn: sqlite3.Connection) -> None:
         print("--------------------------------------------------")
         print(f"銷售總額: {row['stotal']:,}")
         print("==================================================")
+        print()
 
 def main() -> None:
     conn = connect_db()
